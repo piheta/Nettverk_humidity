@@ -1,0 +1,60 @@
+.card{
+    height: 20rem;
+    width: 20rem;
+    background-color: rgb(228, 227, 227);
+    box-shadow: 1px 1px 50px 1px #888888;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card:hover{
+    transform: scale(1.01);
+    transition: all 0.2s ease-in-out;
+}
+
+.card-info{
+    padding: 1rem 0.6rem;
+    font-size: 0.9rem;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-direction: column;
+    width: 100%;
+}
+
+.latin-plant{
+    padding-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(161, 158, 158);
+    font-style: italic;
+}
+
+#humidity{
+    padding-top: 1rem;
+}
+
+#plant{
+    text-decoration: underline;
+}
+
+
+.plant-precentage{
+    width: 100px;
+    height: 100px;
+    background: rgb(218, 213, 213);
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 50px 1px #888888;
+
+}
+
