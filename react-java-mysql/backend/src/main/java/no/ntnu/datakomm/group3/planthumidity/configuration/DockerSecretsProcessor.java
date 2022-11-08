@@ -1,4 +1,4 @@
-package com.company.project.configuration;
+package no.ntnu.datakomm.group3.planthumidity.configuration;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

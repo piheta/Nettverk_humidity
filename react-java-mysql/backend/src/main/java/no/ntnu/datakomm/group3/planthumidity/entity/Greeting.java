@@ -1,4 +1,4 @@
-package com.company.project.entity;
+package no.ntnu.datakomm.group3.planthumidity.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
