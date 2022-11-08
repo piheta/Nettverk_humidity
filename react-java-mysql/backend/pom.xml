@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>New App</name>
+    <name>Plant Humidity</name>
     <description>My new SpringBoot app</description>
 
     <parent>
