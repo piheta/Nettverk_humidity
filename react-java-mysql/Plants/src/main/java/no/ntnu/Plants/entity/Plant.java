@@ -2,8 +2,10 @@ package no.ntnu.Plants.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "plant")
 public class Plant {
     
     @Id
