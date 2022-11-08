@@ -1,6 +1,6 @@
-package com.company.project.repository;
+package no.ntnu.datakomm.group3.planthumidity.repository;
 
-import com.company.project.entity.Greeting;
+import no.ntnu.datakomm.group3.planthumidity.entity.Greeting;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

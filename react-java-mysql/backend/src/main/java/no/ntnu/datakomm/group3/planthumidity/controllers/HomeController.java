@@ -1,7 +1,7 @@
-package com.company.project.controllers;
+package no.ntnu.datakomm.group3.planthumidity.controllers;
 
-import com.company.project.entity.Greeting;
-import com.company.project.repository.GreetingRepository;
+import no.ntnu.datakomm.group3.planthumidity.entity.Greeting;
+import no.ntnu.datakomm.group3.planthumidity.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

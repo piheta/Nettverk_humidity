@@ -1,4 +1,4 @@
-package com.company.project;
+package no.ntnu.datakomm.group3.planthumidity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
