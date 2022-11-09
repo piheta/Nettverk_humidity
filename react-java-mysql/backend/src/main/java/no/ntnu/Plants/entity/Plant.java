@@ -11,7 +11,6 @@ public class Plant {
     @Id
     private int plantId;
     private String plantName;
-    private String plantPercentages;
     private String plantLatinName;
 
 
@@ -33,15 +32,7 @@ public class Plant {
     public void setPlantName(String plantName) {
         this.plantName = plantName;
     }
-
-    public String getPlantPercentages() {
-        return plantPercentages;
-    }
-
-    public void setPlantPercentages(String plantPercentages) {
-        this.plantPercentages = plantPercentages;
-    }
-
+    
     public String getPlantLatinName() {
         return plantLatinName;
     }

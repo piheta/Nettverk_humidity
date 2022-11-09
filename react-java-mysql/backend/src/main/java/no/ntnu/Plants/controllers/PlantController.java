@@ -24,7 +24,4 @@ public class PlantController {
     public ResponseEntity<List<Plant>> getAllPlants() {
         return new ResponseEntity<>(plantservice.getAllPlants(), HttpStatus.OK);
     }
-
-    
-    
 }
