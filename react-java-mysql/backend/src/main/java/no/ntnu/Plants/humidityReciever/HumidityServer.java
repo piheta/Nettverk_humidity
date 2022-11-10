@@ -1,12 +1,12 @@
 package no.ntnu.Plants.humidityReciever;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLServerSocketFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,14 +19,19 @@ public class HumidityServer {
         Logger logger = Logger.getLogger(HumidityServer.class.getName());
         String logStarting = "Humidity-server> Starting on port: " + Integer.toString(humidityPort);
         logger.log(Level.INFO, logStarting);
-        try {
-            ServerSocket welcomeSocket = new ServerSocket(humidityPort);
-            
+
+        System.setProperty("javax.net.ssl.keyStore","myKeyStore.jks");
+        System.setProperty("javax.net.ssl.keyStorePassword",""); //env var
+
+        try{
+            SSLServerSocketFactory sslServerSocketfactory = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
+            SSLServerSocket sslServerSocket = (SSLServerSocket)sslServerSocketfactory.createServerSocket(humidityPort);
+
             while(isRunning) {
                 //create socket
-                Socket clientSocket = welcomeSocket.accept();
+                SSLSocket clientSocket = (SSLSocket) sslServerSocket.accept();
                 logger.log(Level.INFO, "Humidity-server> New client connected");
-                welcomeSocket.getInetAddress();
+                sslServerSocket.getInetAddress();
 
                 //message printed on client screen after connection
                 PrintWriter outToClient = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -39,11 +44,8 @@ public class HumidityServer {
                 String clientMsg = inFromSocket.readLine();
                 if (clientMsg != null){
                     //ToDo implement encoding and decoding of messages
-                    String plantId = clientMsg.split(";")[0];
-                    String humidity = clientMsg.split(";")[1];
-                    System.out.println("plantId: " + plantId);
-                    System.out.println("humidity: " + humidity);
-                    //ToDo implement AddToTable(plantId, humidity);
+                    System.out.println(clientMsg);
+                    //Todo implement sql adder of above string
                 }
 
 
@@ -60,7 +62,7 @@ public class HumidityServer {
                 clientSocket.close();
             }
             logger.log(Level.INFO, "Humidity-server> Shutting down...");
-            welcomeSocket.close();
+            sslServerSocket.close();
 
         }catch (IOException e){
             logger.log(Level.SEVERE, "Humidity-server> Could not open a listening socket");
