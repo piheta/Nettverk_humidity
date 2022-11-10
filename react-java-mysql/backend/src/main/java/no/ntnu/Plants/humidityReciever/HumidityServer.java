@@ -17,10 +17,10 @@ public class HumidityServer {
     
     public static void run(int humidityPort){
         Logger logger = Logger.getLogger(HumidityServer.class.getName());
-        String logStarting = "Humidity-server> Starting on port: " + Integer.toString(humidityPort);
+        String logStarting = "Humidity-server> Started on port: " + Integer.toString(humidityPort);
         logger.log(Level.INFO, logStarting);
 
-        System.setProperty("javax.net.ssl.keyStore","myKeyStore.jks");
+        System.setProperty("javax.net.ssl.keyStore","Group3KeyStore.jks");
         System.setProperty("javax.net.ssl.keyStorePassword",""); //env var
 
         try{
@@ -58,7 +58,7 @@ public class HumidityServer {
 
 
 
-                logger.log(Level.INFO, "Humidity-server> Closing client socket...");
+                logger.log(Level.INFO, "Humidity-server> Client socket closed");
                 clientSocket.close();
             }
             logger.log(Level.INFO, "Humidity-server> Shutting down...");
