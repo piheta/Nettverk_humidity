@@ -32,17 +32,23 @@ public class HumidityServer {
                 PrintWriter outToClient = new PrintWriter(clientSocket.getOutputStream(), true);
                 outToClient.println('\n' + "Humidity-server> Connected");
 
-                
+                /*
+                 * Expected decoded string: "${plantId};${humidity}" == "1,50"
+                 */
                 BufferedReader inFromSocket = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String clientMsg = inFromSocket.readLine();
                 if (clientMsg != null){
                     //ToDo implement encoding and decoding of messages
-                    System.out.println(clientMsg);
+                    String plantId = clientMsg.split(";")[0];
+                    String humidity = clientMsg.split(";")[1];
+                    System.out.println("plantId: " + plantId);
+                    System.out.println("humidity: " + humidity);
+                    //ToDo implement AddToTable(plantId, humidity);
                 }
 
 
                 try {
-                    Thread.sleep(10000); //10s
+                    Thread.sleep(3000); //3s
                 } catch (InterruptedException e){
                     logger.log(Level.WARNING, e.getMessage());
                     logger.log(Level.WARNING, "Humidity-server> Sleep interrupted");
