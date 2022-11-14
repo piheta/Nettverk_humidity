@@ -1,40 +1,10 @@
-# syntax=docker/dockerfile:1.4
+FROM eclipse-temurin:11-jdk-jammy
 
-FROM maven:3.8.5-eclipse-temurin-17 AS builder
-WORKDIR /workdir/server
-COPY pom.xml /workdir/server/pom.xml
-RUN mvn dependency:go-offline
-
-COPY src /workdir/server/src
-RUN mvn install
-
-FROM builder as dev-envs
-
-
-RUN apt-get update
-RUN apt-get install -y git
-
-
-
-RUN useradd -s /bin/bash -m vscode
-RUN groupadd docker
-RUN usermod -aG docker vscode
-
-# install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
-CMD ["mvn", "spring-boot:run"]
-
-FROM builder as prepare-production
-RUN mkdir -p target/dependency
-WORKDIR /workdir/server/target/dependency
-RUN jar -xf ../*.jar
-
-FROM eclipse-temurin:17-jre-focal
+WORKDIR /app
+COPY ./target/Plants-0.0.1-SNAPSHOT.jar /app
+COPY Group3KeyStore.jks /app
 
 EXPOSE 8080
-VOLUME /tmp
-ARG DEPENDENCY=/workdir/server/target/dependency
-COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=prepare-production ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","no.ntnu.Plants.PlantsApplication"]
+EXPOSE 5555
+
+CMD ["java", "-jar", "Plants-0.0.1-SNAPSHOT.jar"]
