@@ -31,3 +31,5 @@ jobs:
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend compile
     - name: mvn test
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend test
+    - name: mvn build jar file
+      run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend clean install
