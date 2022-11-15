@@ -43,7 +43,7 @@ jobs:
     - name: mvn test
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend test
   build:
-    needs: test
+    needs: [compile, test]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
         cache: maven
     - name: mvn build jar file
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend clean install
-  npm:
+  npm-ci:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
@@ -64,6 +64,16 @@ jobs:
         cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
     - name: npm clean install
       run: npm ci --prefix /home/ubuntu/repos/frontend/
+  npm run build:
+    needs: npm-ci
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        cache: 'npm'
+        cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
+    - name: npm run build
+      run: npm run build --if-present --prefix /home/ubuntu/repos/frontend/
   deploy:
     needs: [build, npm]
     runs-on: self-hosted
