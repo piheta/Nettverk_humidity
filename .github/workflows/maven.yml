@@ -31,6 +31,7 @@ jobs:
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend compile
   test:
     runs-on: self-hosted
+    needs: compile
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -42,6 +43,7 @@ jobs:
     - name: mvn test
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend test
   build:
+    needs: test
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
@@ -54,6 +56,7 @@ jobs:
     - name: mvn build jar file
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend clean install
   deploy:
+    needs: build
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
