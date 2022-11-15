@@ -65,8 +65,7 @@ jobs:
     - name: npm clean install
       run: npm ci --prefix /home/ubuntu/repos/frontend/
   deploy:
-    needs: build
-    needs: npm
+    needs: [build, npm]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
