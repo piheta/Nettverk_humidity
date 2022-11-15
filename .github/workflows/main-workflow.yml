@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Compile mvn and npm and deploy with docker
 
 on:
   push:
@@ -85,5 +85,14 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
-    - name: docker ps test
-      run: docker ps
+    - name: docker stop front
+      run: docker stop humid_frontend_1
+    - name: docker stop back
+      run: docker stop humid_backend_1
+    - name: docker rm front
+      run: docker rm humid_frontend_1
+    - name: docker rm back
+      run: docker rm humid_backend_1
+    - name: docker-compose
+      run: docker-compose -f /home/ubuntu/repos/react-java-mysql/compose.yaml up -d
+
