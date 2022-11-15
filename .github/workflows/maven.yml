@@ -55,8 +55,18 @@ jobs:
         cache: maven
     - name: mvn build jar file
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend clean install
+  npm:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        cache: 'npm'
+        cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
+    - name: npm clean install
+    run: npm ci --prefix /home/ubuntu/repos/frontend/
   deploy:
     needs: build
+    needs: npm
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
