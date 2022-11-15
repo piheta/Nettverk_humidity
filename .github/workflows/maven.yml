@@ -63,7 +63,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
     - name: npm clean install
-    run: npm ci --prefix /home/ubuntu/repos/frontend/
+      run: npm ci --prefix /home/ubuntu/repos/frontend/
   deploy:
     needs: build
     needs: npm
