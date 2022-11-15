@@ -81,7 +81,7 @@ jobs:
     - name: npm run build
       run: npm run build --if-present --prefix /home/ubuntu/repos/frontend/
   docker-compose:
-    needs: [build, npm-build]
+    needs: [mvn-build, npm-build]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
