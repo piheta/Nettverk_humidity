@@ -27,6 +27,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: update
+      run: cd /home/ubuntu/repos/ && sudo git pull
     - name: mvn compile
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend compile
     - name: mvn test
