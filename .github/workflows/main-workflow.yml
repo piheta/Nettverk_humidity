@@ -89,10 +89,14 @@ jobs:
       run: docker stop humid_frontend_1
     - name: docker stop back
       run: docker stop humid_backend_1
+    - name: docker stop db
+      run: docker stop humid_db_1
     - name: docker rm front
       run: docker rm humid_frontend_1
     - name: docker rm back
       run: docker rm humid_backend_1
+    - name: docker rm db
+      run: docker rm humid_db_1
     - name: docker-compose
       run: docker-compose -f /home/ubuntu/repos/react-java-mysql/compose.yaml up -d
 
