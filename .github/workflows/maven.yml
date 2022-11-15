@@ -15,8 +15,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-  compile:
+  git-pull:
     runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+    - name: git pull
+      run: cd /home/ubuntu/repos/ && sudo git pull
+  mvn-compile:
+    runs-on: self-hosted
+    needs: git-pull
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -25,13 +32,11 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: update
-      run: cd /home/ubuntu/repos/ && sudo git pull
     - name: mvn compile
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend compile
-  test:
+  mvn-test:
     runs-on: self-hosted
-    needs: compile
+    needs: mvn-compile
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -42,8 +47,8 @@ jobs:
         cache: maven
     - name: mvn test
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend test
-  build:
-    needs: [compile, test]
+  mvn-build:
+    needs: [mvn-compile, mvn-test]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
@@ -57,6 +62,7 @@ jobs:
       run: sudo mvn -f /home/ubuntu/repos/react-java-mysql/backend clean install
   npm-ci:
     runs-on: self-hosted
+    needs: git-pull
     steps:
     - uses: actions/checkout@v3
       with:
@@ -74,7 +80,7 @@ jobs:
         cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
     - name: npm run build
       run: npm run build --if-present --prefix /home/ubuntu/repos/frontend/
-  deploy:
+  docker-compose:
     needs: [build, npm-build]
     runs-on: self-hosted
     steps:
