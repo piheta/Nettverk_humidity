@@ -35,7 +35,7 @@ public class HumidityServer {
         logger.log(Level.INFO, logStarting);
 
         System.setProperty("javax.net.ssl.keyStore","Group3KeyStore.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword",""); //env var
+        System.setProperty("javax.net.ssl.keyStorePassword","var_keystore_passwd"); //env var
 
         try{
             SSLServerSocketFactory sslServerSocketfactory = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
