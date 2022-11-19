@@ -67,7 +67,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         cache: 'npm'
-        cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
+        cache-dependency-path: '/home/ubuntu/repos/react-java-mysql/frontend/package-lock.json'
     - name: npm clean install
       run: npm ci --prefix /home/ubuntu/repos/frontend/
   npm-build:
@@ -77,7 +77,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         cache: 'npm'
-        cache-dependency-path: '/home/ubuntu/repos/frontend/package-lock.json'
+        cache-dependency-path: '/home/ubuntu/repos/react-java-mysql/frontend/package-lock.json'
     - name: npm run build
       run: npm run build --if-present --prefix /home/ubuntu/repos/frontend/
   docker-compose:
