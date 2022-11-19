@@ -69,7 +69,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '/home/ubuntu/repos/react-java-mysql/frontend/package-lock.json'
     - name: npm clean install
-      run: npm ci --prefix /home/ubuntu/repos/frontend/
+      run: npm ci --prefix /home/ubuntu/repos/react-java-mysql/frontend/
   npm-build:
     needs: npm-ci
     runs-on: self-hosted
@@ -79,7 +79,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '/home/ubuntu/repos/react-java-mysql/frontend/package-lock.json'
     - name: npm run build
-      run: npm run build --if-present --prefix /home/ubuntu/repos/frontend/
+      run: npm run build --if-present --prefix /home/ubuntu/repos/react-java-mysql/frontend/
   docker-compose:
     needs: [mvn-build, npm-build]
     runs-on: self-hosted
