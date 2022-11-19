@@ -5,23 +5,37 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.net.ssl.SSLSocket;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import no.ntnu.Plants.entity.Humidity;
+import no.ntnu.Plants.service.HumidityService;
+
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Service
 public class HumidityServer {
 
-    static boolean isRunning = true;
-    private HumidityServer(){}
+    boolean isRunning = true;
+    public HumidityServer(){
+        //only run is necessary
+    }
     
-    public static void run(int humidityPort){
+    @Autowired
+    private HumidityService hs;
+
+
+    public void run(int humidityPort){
         Logger logger = Logger.getLogger(HumidityServer.class.getName());
         String logStarting = "Humidity-server> Started on port: " + Integer.toString(humidityPort);
         logger.log(Level.INFO, logStarting);
 
         System.setProperty("javax.net.ssl.keyStore","Group3KeyStore.jks");
-        System.setProperty("javax.net.ssl.keyStorePassword","var_keystore_passwd"); //env var
+        System.setProperty("javax.net.ssl.keyStorePassword",""); //env var
 
         try{
             SSLServerSocketFactory sslServerSocketfactory = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
@@ -38,19 +52,23 @@ public class HumidityServer {
                 outToClient.println('\n' + "Humidity-server> Connected");
 
                 /*
-                 * Expected decoded string: "${plantId};${humidity}" == "1,50"
+                 * Expected string: "${plantId};${humidity}" == "1;50"
                  */
                 BufferedReader inFromSocket = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String clientMsg = inFromSocket.readLine();
                 if (clientMsg != null){
-                    //ToDo implement encoding and decoding of messages
                     System.out.println(clientMsg);
+                    int plantId = Integer.parseInt(clientMsg.split(";")[0]);
+                    int humidityPercent = Integer.parseInt(clientMsg.split(";")[1]);
+                    
+                    hs.addHumidity(plantId,humidityPercent);
+
                     //Todo implement sql adder of above string
                 }
 
 
                 try {
-                    Thread.sleep(3000); //3s
+                    Thread.sleep(1500); //3s
                 } catch (InterruptedException e){
                     logger.log(Level.WARNING, e.getMessage());
                     logger.log(Level.WARNING, "Humidity-server> Sleep interrupted");
