@@ -2,7 +2,6 @@ package no.ntnu.Plants.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import no.ntnu.Plants.entity.Humidity;
 import no.ntnu.Plants.entity.Plant;
 import no.ntnu.Plants.repository.HumidityRepository;
@@ -26,7 +25,9 @@ public class HumidityService {
         } else {
             System.out.println("Plant doesnt exist");
         }
-        
-        
+    }
+
+    public Humidity getLastHumidity(Integer plantId){
+        return humidityRepository.findFirstByOrderByHumidityId().orElseThrow();
     }
 }
