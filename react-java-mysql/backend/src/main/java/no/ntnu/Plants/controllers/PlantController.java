@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import no.ntnu.Plants.entity.Plant;
 import no.ntnu.Plants.service.PlantService;
 
-@Controller
+@RestController
 @RequestMapping("/plants")
 public class PlantController {
     

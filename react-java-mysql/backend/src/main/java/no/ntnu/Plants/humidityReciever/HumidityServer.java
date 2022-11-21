@@ -5,33 +5,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.net.ssl.SSLSocket;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import no.ntnu.Plants.entity.Humidity;
 import no.ntnu.Plants.service.HumidityService;
-
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-public class HumidityServer {
+public class HumidityServer extends Thread {
 
-    boolean isRunning = true;
-    public HumidityServer(){
-        //only run is necessary
-    }
-    
+    private boolean isRunning = true;
+
     @Autowired
     private HumidityService hs;
 
-
-    public void run(int humidityPort){
+    public void run(){
+        int port = 5555;
         Logger logger = Logger.getLogger(HumidityServer.class.getName());
-        String logStarting = "Humidity-server> Started on port: " + Integer.toString(humidityPort);
+        String logStarting = "Humidity-server> Started on port: " + Integer.toString(port);
         logger.log(Level.INFO, logStarting);
 
         System.setProperty("javax.net.ssl.keyStore","Group3KeyStore.jks");
@@ -39,7 +32,7 @@ public class HumidityServer {
 
         try{
             SSLServerSocketFactory sslServerSocketfactory = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
-            SSLServerSocket sslServerSocket = (SSLServerSocket)sslServerSocketfactory.createServerSocket(humidityPort);
+            SSLServerSocket sslServerSocket = (SSLServerSocket)sslServerSocketfactory.createServerSocket(port);
 
             while(isRunning) {
                 //create socket

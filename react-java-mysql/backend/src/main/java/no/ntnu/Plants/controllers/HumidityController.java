@@ -1,12 +1,25 @@
 package no.ntnu.Plants.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import no.ntnu.Plants.entity.Humidity;
+import no.ntnu.Plants.service.HumidityService;
 
-@Controller
+
+@RestController
+@RequestMapping(path = "/humidity")
 public class HumidityController {
+    @Autowired
+    private HumidityService humidityService;
     
+    @GetMapping(path = "/{plantId}")
+    public @ResponseBody Humidity getLastHumidity(@PathVariable("plantId") Integer plantId){
 
+        return humidityService.getLastHumidity(plantId);
+    }
 
 }
