@@ -2,7 +2,7 @@
     height: 20rem;
     width: 20rem;
     background-color: rgb(228, 227, 227);
-    box-shadow: 1px 1px 50px 1px #888888;
+    box-shadow: 5px 5px 10px 0px #888888;
     border-radius: 0.5rem;
     padding: 1.25rem;
     display: flex;
