@@ -14,14 +14,14 @@ import no.ntnu.Plants.entity.Plant;
 import no.ntnu.Plants.service.PlantService;
 
 @RestController
-@RequestMapping("/plants")
+@RequestMapping("/plant")
 public class PlantController {
     
 
     @Autowired
     private PlantService plantservice;
     
-    @GetMapping
+    @GetMapping(path = "/plants")
     public ResponseEntity<List<Plant>> getAllPlants() {
         return new ResponseEntity<>(plantservice.getAllPlants(), HttpStatus.OK);
     }
