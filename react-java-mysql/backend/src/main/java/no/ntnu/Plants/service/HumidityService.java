@@ -28,6 +28,6 @@ public class HumidityService {
     }
 
     public Humidity getLastHumidity(Integer plantId){
-        return humidityRepository.findFirstByOrderByHumidityId().orElseThrow();
+        return humidityRepository.findFirstByPlantPlantIdOrderByHumidityIdDesc(plantId).orElseThrow();
     }
 }
