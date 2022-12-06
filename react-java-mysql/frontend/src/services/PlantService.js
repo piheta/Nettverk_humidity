@@ -1,7 +1,7 @@
 
 export function getLastHumidity(plantID) {
 
-    return fetch("http://localhost:8080/humidity/" + plantID,{
+    return fetch("http://10.212.25.196:8080/humidity/" + plantID,{
         method: "GET",
         headers:{
             'Accept': '*/*',
@@ -20,7 +20,7 @@ export function getLastHumidity(plantID) {
 
 export function getAllPlants(){
 
-    return fetch("http://localhost:8080/plants",{
+    return fetch("http://10.212.25.196:8080/plants",{
         method: "GET",
         headers:{
             'Accept': '*/*',
