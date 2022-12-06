@@ -21,6 +21,7 @@ public class PlantController {
     @Autowired
     private PlantService plantservice;
     
+    
     //get all plants
     @CrossOrigin(origins = "*")
     @GetMapping
