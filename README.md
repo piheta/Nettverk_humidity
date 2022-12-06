@@ -50,12 +50,22 @@ Data is stored for every single plant active in the system individually. Each pl
 - The soil humidity contains information about how humid the soil was the last time a sensor check was done. This information is then used to calculate if the plant needs water
 - The time of the last watering contains information about when the plant was last given water. This information is also used to calculate the next watering of the plant 
 
+![image](https://user-images.githubusercontent.com/74419768/206041503-0281261e-3128-4d39-9a5c-d14bffbbdd2b.png)
+
+
 #### **Common plants in households and workplaces**
 
 The system provides data on some of the most common household and workplace plants, which is stored in a database. Each plant species holds a **species** name, suggested **soil humidity** level and a recommended **watering cycle**. This makes it easier for the user to quickly add a new plant to the collection, without having to find the information on their own. The user can add their own species to this database if wished. 
 - The **specie** name makes it possible for the user to find the information of a specific species, while the system uses the specie name to match the active plants in the system
 - The suggested **soil humidity** contains a recommended range of soil humidity in percentage. This value is broken down to two different fields: upper range limit and lower range limit.
 - The **watering cycle** field contains information about how often the plant should be watered. This is stored as a whole number, representing days. This number tells how many days apart each watering should be.
+
+Below is a list of some common plants that the system owns information about.
+
+Chart of recommended soil humidity for the most common household plants from https://www.acurite.com/blog/soil-moisture-guide-for-plants-and-vegetables.html
+
+![image](https://user-images.githubusercontent.com/74419768/206042185-2c4cd0db-fdb6-4ad3-ae5a-8bcd50666964.png)
+
 
 #### **Intro to technical theory**
 
