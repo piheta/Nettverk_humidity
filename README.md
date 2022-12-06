@@ -141,7 +141,7 @@ User tests have been performed during the entire process. We made templates on f
 The frontend is hosted here:
 http://10.212.25.196:3000/
 
-We did not recieve rpi sensors. Instead we run the client code on a docker container that randomly generates humidity data for the plants.
+We decided not to use the raspberry pi since we never recieved the sensors. Instead we run the client code on a docker container that randomly generates humidity data for the plants.
 
 We use TLS for sending data between the raspberryPI(container) to our springboot backend. Then display the humidity with react that takes out the data from the database.
 
