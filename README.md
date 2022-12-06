@@ -12,12 +12,12 @@ We describe all the techniques and information behind how the final product woul
 
 ### **Theory and technology**
 
-##### **Time, humidity and database**
+#### **Time, humidity and database**
 
 There are in total three factors that decide when a plant needs water in this system; time, humidity and the information provided by the database on the specific plant. 
 Tracking of time is a necessity as the process of watering a plant is time-based. Watering a plant is in almost all cases a repeating cycle and knowing the previous states of humidity of a plant is crucial for deterring when it needs refill. Humidity and time are combined to deter whenever a plant needs to be watered, which we will come back to later in this paper. In theory, the humidity of the plant could alone provide enough information about when to water the plant next, but for a more accurate result the time should also be taken into consideration. The previous watering of a plant, as well as its current humidity, is stored in a field of the specific plant, and not in the generic table of the plant species providing information about its suggested watering cycles. Having a unique item for each active plant in the database is unavoidable, as each plant needs to be monitored individually, and two plants of the same species can be on two different watering cycles.
 
-##### **Calculating when a plant needs to be watered**
+#### **Calculating when a plant needs to be watered**
 
 Recognizing when a plant needs water is one of the main functionalities of the system. As mentioned earlier, this is done with the information from the database about each plant individually. The individual data provides information about the plants last watering and its current humidity. The generic plant species data provides information about how often the plant should be watered, as well as how wet the soil should be. This is all the data we need to be able to calculate when a plant needs water.
 As plants usually thrive in a range of humidity rather than a specific number, we can use this information to make sure the plant soil stays in the ideal range. A plant with a suggested range of 40% - 60% humidity will need to be watered some time before it reaches 40%. On the other hand, you don’t want to water it when it is close to 60%, as it can lower the suggested humidity level and in the worst case drown the plant. To avoid these situations, and simple mathematical formula can be applied:
@@ -122,7 +122,7 @@ No password is stored in github instead we use ansible to insert the passwords. 
 
 As you can see github actions tests our frontend and backend code and runs docker-compose if it is successful to deploy the app. We are using a self-hosted runner which tests our application and deploys it. As you can see above we have 7 jobs that are run and depend on each other. They are run every time someone pushes to main or creates a pull request. [1]
 
-#### **Connection to other subjects**
+### **Connection to other subjects**
 
 Database modeling and databases. (Mariadb)
 Web Technology (React Frontend)
@@ -131,12 +131,12 @@ Skytjenester (IAC and CI/CD)
 Operativsystemer med systemprogrammering (Multithreading)
 Programming 1 and 2
 
-#### **Methodology**
+### **Methodology**
 
 We have worked in conjunction with other subjects. Using a CI/CD assignment and implementing it in this humidity’s project repository.
 User tests have been performed during the entire process. We made templates on figma of the frontend and checked if it was readable for the users. When the frontend has been developed we also took in feedback from the users. Mostly focused on design. The users understood the current humidity and what plant it belongs to.
 
-#### **Results**
+### **Results**
 
 The frontend is hosted here:
 http://10.212.25.196:3000/
@@ -145,11 +145,11 @@ We did not have time to deploy our client code on raspberry pi’s. Instead we r
 
 We use TLS for sending data between the raspberryPI(container) to our springboot backend. Then display the humidity with react that takes out the data from the database.
 
-#### **Conclusion and future work**
+### **Conclusion and future work**
 
 Our deployed solution works very well (for the features we have), all data sent is encrypted and nicely displayed on the website. It also has potential for future developments. Monitoring of the nutrients in the plant's soil, or monitoring of the amount of sunlight hitting the plant are examples of future features. The making of an easy to use mobile application would also be a high priority as this would make the service accessible to an increased amount of users. After the implementation of more features and better accessibility, the implementation of a subscription based system could be implemented to monetize the application.
 
-#### **Refrences**
+### **Refrences**
 
 1. Cloud services administration Assignment - Mateusz Picheta
 2. https://iot.stackexchange.com/questions/1509/performance-of-mqtt-over-tls-vs-mqtt
