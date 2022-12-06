@@ -102,14 +102,44 @@ We have a simple openstack heat template that creates a ubuntu vm with a static 
 
 Our ansible playbook installs maven, npm and docker on the above ubuntu server, it then pulls our repo and configures it, when everything is ready and tested, it runs docker compose.
 
-![0a1196db0b801c6aabfb86b9d4520a3f](https://user-images.githubusercontent.com/74419768/206039713-cdf61ef7-475d-43da-854a-84a5f1e47b56.png)
+![image](https://user-images.githubusercontent.com/74419768/206040498-c71ae95d-3708-436d-87cb-5cf2df2e3b21.png)
 
 No password is stored in github instead we use ansible to insert the passwords. In the picture above you can see ansible search for var dbpasswd in a file and replace it with the user inputted password.[1]
 
 #### **CI/CD**
 
-
+![image](https://user-images.githubusercontent.com/74419768/206040436-50ad4a3c-0a68-4ff7-8b02-d7b66de474a4.png)
 
 As you can see github actions tests our frontend and backend code and runs docker-compose if it is successful to deploy the app. We are using a self-hosted runner which tests our application and deploys it. As you can see above we have 7 jobs that are run and depend on each other. They are run every time someone pushes to main or creates a pull request. [1]
 
 #### **Connection to other subjects**
+
+Database modeling and databases. (Mariadb)
+Web Technology (React Frontend)
+Application Development (Spring Boot backend)
+Skytjenester (IAC and CI/CD)
+Operativsystemer med systemprogrammering (Multithreading)
+Programming 1 and 2
+
+#### **Methodology**
+
+We have worked in conjunction with other subjects. Using a CI/CD assignment and implementing it in this humidity’s project repository.
+User tests have been performed during the entire process. We made templates on figma of the frontend and checked if it was readable for the users. When the frontend has been developed we also took in feedback from the users. Mostly focused on design. The users understood the current humidity and what plant it belongs to.
+
+#### **Results**
+
+The frontend is hosted here:
+http://10.212.25.196:3000/
+
+We did not have time to deploy our client code on raspberry pi’s. Instead we run the client code on a docker container that randomly generates humidity data for the plants.
+
+We use TLS for sending data between the raspberryPI(container) to our springboot backend. Then display the humidity with react that takes out the data from the database.
+
+#### **Conclusion and future work**
+
+Our deployed solution works very well (for the features we have), all data sent is encrypted and nicely displayed on the website. It also has potential for future developments. Monitoring of the nutrients in the plant's soil, or monitoring of the amount of sunlight hitting the plant are examples of future features. The making of an easy to use mobile application would also be a high priority as this would make the service accessible to an increased amount of users. After the implementation of more features and better accessibility, the implementation of a subscription based system could be implemented to monetize the application.
+
+#### **Refrences**
+
+1. Cloud services administration Assignment - Mateusz Picheta
+2. https://iot.stackexchange.com/questions/1509/performance-of-mqtt-over-tls-vs-mqtt
