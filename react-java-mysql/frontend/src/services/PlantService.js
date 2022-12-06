@@ -1,21 +1,34 @@
-import axios from "axios";
-
 
 export function getAllPlants(){
-    return axios({
-        method: 'GET',
-        url: "http://localhost:8080/plants",
-        headers: {
+
+    return fetch("http://localhost:8080/plants",{
+        method: "GET",
+        headers:{
             'Accept': '*/*',
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin" : "*"
-        },
-    }).then((response) => {
+             "Content-Type": "application/json"
+        }
+    })
+    .then((response) =>{
         console.log(response);
         if (response.status === 200) {
-            return response.data;
+            return response.json();
         }else{
             console.log(response.status);
         }
     })
+    // return axios({
+    //     method: 'GET',
+    //     url: "http://localhost:8080/plants",
+    //     headers: {
+    //         'Accept': '*/*',
+    //         "Content-Type": "application/json"
+    //     },
+    // }).then((response) => {
+    //     console.log(response);
+    //     if (response.status === 200) {
+    //         return response.data;
+    //     }else{
+    //         console.log(response.status);
+    //     }
+    // })
 };
