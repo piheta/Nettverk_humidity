@@ -8,7 +8,7 @@ When building a system for monitoring plant humidity, there are multiple factors
 
 The plant-monitoring system is a solution meant primarily for private homes. Almost every home in the western world has at least one plant, but not necessarily a person with green thumbs that can take care of the plant. With this system all that is needed is access to a phone or a computer and the rest is taken care of. With the help of moisture sensors, a database full of plants, this system will help house plants all over the world. 
 
-We describe all the techniques and information behind how the final product would function and calculate everything it needs to keep the plants healthy. A small insight into the work process and which other subjects are related to the project is presented later in the report. Finally a look at the results we made, and which lessons we learned throughout the project.
+**We describe all the techniques and information behind how the final product would function** and calculate everything it needs to keep the plants healthy. A small insight into the work process and which other subjects are related to the project is presented later in the report. Finally a look at the results we made, and which lessons we learned throughout the project.
 
 ### **Theory and technology**
 
@@ -141,7 +141,7 @@ User tests have been performed during the entire process. We made templates on f
 The frontend is hosted here:
 http://10.212.25.196:3000/
 
-We did not have time to deploy our client code on raspberry pi’s. Instead we run the client code on a docker container that randomly generates humidity data for the plants.
+We did not recieve rpi sensors. Instead we run the client code on a docker container that randomly generates humidity data for the plants.
 
 We use TLS for sending data between the raspberryPI(container) to our springboot backend. Then display the humidity with react that takes out the data from the database.
 
