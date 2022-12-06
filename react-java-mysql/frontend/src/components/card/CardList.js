@@ -19,10 +19,7 @@ function CardList() {
         {
             
             plants.map((plant) => {
-                return <Card 
-                name={plant.plantName}
-                precentage={"34"}
-                latin={plant.plantLatinName}/>;
+                return <Card plant={plant}/>;
                 
             })
         }
