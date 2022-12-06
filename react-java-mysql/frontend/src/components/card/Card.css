@@ -1,7 +1,8 @@
 .card{
     height: 20rem;
     width: 20rem;
-    background-color: rgb(228, 227, 227);
+    padding-top: 10rem;
+    background-color: rgb(255, 255, 255);
     box-shadow: 5px 5px 10px 0px #888888;
     border-radius: 0.5rem;
     padding: 1.25rem;
@@ -47,14 +48,14 @@
 .plant-precentage{
     width: 100px;
     height: 100px;
-    background: rgb(218, 213, 213);
+    background: rgb(255, 255, 255);
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 1px 1px 50px 1px #888888;
+    box-shadow: 1px 1px 5px 1px #888888;
 
 }
 
