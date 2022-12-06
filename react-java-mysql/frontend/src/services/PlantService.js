@@ -1,7 +1,7 @@
 
 export function getAllPlants(){
 
-    return fetch("http://localhost:8080/plants",{
+    return fetch("http://10.212.25.196:8080/plants",{
         method: "GET",
         headers:{
             'Accept': '*/*',
