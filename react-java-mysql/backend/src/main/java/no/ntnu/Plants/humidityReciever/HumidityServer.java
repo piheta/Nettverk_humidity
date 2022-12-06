@@ -51,12 +51,17 @@ public class HumidityServer extends Thread {
                 String clientMsg = inFromSocket.readLine();
                 if (clientMsg != null){
                     System.out.println(clientMsg);
-                    int plantId = Integer.parseInt(clientMsg.split(";")[0]);
-                    int humidityPercent = Integer.parseInt(clientMsg.split(";")[1]);
-                    
-                    hs.addHumidity(plantId,humidityPercent);
+                    int plantId1 = Integer.parseInt(clientMsg.split(";")[0]);
+                    int humidityPercent1 = Integer.parseInt(clientMsg.split(";")[1]);
+                    int plantId2 = Integer.parseInt(clientMsg.split(";")[2]);
+                    int humidityPercent2 = Integer.parseInt(clientMsg.split(";")[3]);
+                    int plantId3 = Integer.parseInt(clientMsg.split(";")[4]);
+                    int humidityPercent3 = Integer.parseInt(clientMsg.split(";")[5]);
 
-                    //Todo implement sql adder of above string
+
+                    hs.addHumidity(plantId1,humidityPercent1);
+                    hs.addHumidity(plantId2,humidityPercent2);
+                    hs.addHumidity(plantId3,humidityPercent3);
                 }
 
 

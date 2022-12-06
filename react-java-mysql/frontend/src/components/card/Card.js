@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getLastHumidity } from '../../services/PlantService';
 import "./Card.css";
 
 
+function Card({plant}) {
 
-function Card({name, precentage, latin}) {
+    const [humidity, setHumidity] = useState([]);
+
+    useEffect(() => {
+        setInterval(() => {
+            getLastHumidity(plant.plantId).then((humidityData) => {
+                setHumidity(humidityData);
+            })
+        },3000);
+        
+    }, [plant.plantId])
     return (
     <div className="card">
         <div className="plant-precentage">
-            <h2>{"34"}</h2>
+            <h2>{humidity.humidity+"%"}</h2>
         </div>
         <div className="card-info">
-            <h2>Plant: {name}</h2>
-            <h2>Humidity: {precentage}</h2>
+            <h2>Plant: {plant.plantName}</h2>
+            <h2>Humidity: {humidity.humidity+"%"}</h2>
             <div className="latin-plant">
-            <h2>{latin}</h2>
+            <h2>{plant.plantLatinName}</h2>
             </div>
         </div>
         

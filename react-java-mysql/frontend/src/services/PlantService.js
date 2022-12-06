@@ -1,4 +1,23 @@
 
+export function getLastHumidity(plantID) {
+
+    return fetch("http://10.212.25.196:8080/humidity/" + plantID,{
+        method: "GET",
+        headers:{
+            'Accept': '*/*',
+             "Content-Type": "application/json"
+        }
+    })
+    .then((response) =>{
+        if (response.status === 200) {
+            let responseData = response.json();
+            return responseData;
+        }else{
+            console.log(response.status);
+        }
+    })
+};
+
 export function getAllPlants(){
 
     return fetch("http://10.212.25.196:8080/plants",{
@@ -9,26 +28,12 @@ export function getAllPlants(){
         }
     })
     .then((response) =>{
-        console.log(response);
+        let responseData = response.json();
+
         if (response.status === 200) {
-            return response.json();
+            return responseData;
         }else{
             console.log(response.status);
         }
     })
-    // return axios({
-    //     method: 'GET',
-    //     url: "http://localhost:8080/plants",
-    //     headers: {
-    //         'Accept': '*/*',
-    //         "Content-Type": "application/json"
-    //     },
-    // }).then((response) => {
-    //     console.log(response);
-    //     if (response.status === 200) {
-    //         return response.data;
-    //     }else{
-    //         console.log(response.status);
-    //     }
-    // })
 };
